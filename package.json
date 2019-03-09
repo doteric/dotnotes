@@ -1,0 +1,31 @@
+{
+  "name": "dotnotes",
+  "version": "0.1.0",
+  "main": "main.js",
+  "private": true,
+  "dependencies": {
+    "electron": "^4.0.7",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-scripts": "2.1.8"
+  },
+  "scripts": {
+    "start": "electron .",
+    "react-start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "electron-builder": "^20.38.5"
+  }
+}

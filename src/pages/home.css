@@ -1,0 +1,56 @@
+.home {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+.home .hcol {
+  display: flex;
+  flex-direction: column;
+}
+.home .hcol.stretch {
+  flex: 1;
+}
+
+.home .hcol .catlist {
+  overflow: auto;
+}
+.home .hcol .catlist .catbox {
+  background-color: #ddd;
+  color: #333;
+  padding: 4px 8px;
+  margin: 4px 8px;
+  display: flex;
+  justify-content: space-between;
+}
+.home .hcol .catlist .catbox .catcol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.home .hcol .catlist .catbox .catcol .catname {
+  font-size: 1.2rem;
+}
+.home .hcol .catlist .catbox .catcol .catdate {
+  font-size: 0.9rem;
+}
+.home .hcol .catlist .catbox .catcol .catcount {
+  font-size: 1.2rem;
+}
+.home .hcol .catlist .catbox .catcol .catcount i {
+  font-size: 0.9rem;
+}
+
+.home .hcol .actionlist {
+  display: flex;
+}
+.home .hcol .actionlist .actionbox {
+  height: 44px;
+  width: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ddd;
+  color: #333;
+  font-size: 1.4rem;
+  margin: 0 4px;
+}
