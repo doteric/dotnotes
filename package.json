@@ -1,12 +1,16 @@
 {
   "name": "dotnotes",
   "version": "0.1.0",
-  "main": "main.js",
+  "description": "A place for your notes.",
+  "author": "doteric <Eric Kolodziej>",
+  "main": "./public/electron.js",
+  "homepage": ".",
   "private": true,
   "dependencies": {
-    "electron": "^4.0.7",
+    "path": "^0.12.7",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.8"
   },
   "scripts": {
@@ -14,7 +18,8 @@
     "react-start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "pack": "build --c.extraMetadata.main=build/electron.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -26,6 +31,18 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "electron-builder": "^20.38.5"
+    "electron": "^4.0.7",
+    "electron-builder": "^20.38.5",
+    "typescript": "^3.3.3333"
+  },
+  "build": {
+    "appId": "net.doteric.dotnotes",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "bassets"
+    }
   }
 }

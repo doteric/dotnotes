@@ -1,0 +1,28 @@
+.catcreation .inputrow {
+  margin: 8px 4px;
+}
+.catcreation .inputrow p {
+  margin: 0;
+  margin-bottom: 4px;
+}
+.catcreation .inputrow input[type="text"] {
+  width: 100%;
+  border: 0;
+  background-color: #ddd;
+  padding: 4px;
+  font-size: 1.0rem;
+  box-sizing: border-box;
+}
+.catcreation .inputrow input[type="text"]:focus {
+  outline: none;
+  background-color: #ccc;
+}
+.catcreation .inputrow button {
+  width: 100%;
+  border: 0;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+.catcreation .inputrow button:hover {
+  background-color: #ccc;
+}

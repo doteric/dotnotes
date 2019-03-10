@@ -1,7 +1,21 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import './home.css';
+const ipcRenderer = window.require('electron').ipcRenderer;
 
 export default class Home extends Component {
+  constructor(props) {
+    super(props);
+
+    this.testNotif = this.testNotif.bind(this);
+  }
+
+  newCategory(event) {
+    ipcRenderer.send('newCat');
+  }
+  testNotif(event) {
+    ipcRenderer.send('testNotif');
+  }
+
   render() {
     let categories = [
       {name: "Test", date:"10.10.2010", notesCount:3, alarmsCount:1},
@@ -11,7 +25,7 @@ export default class Home extends Component {
     return (
       <div className="home">
         <div className="hcol stretch">
-          <h3>latest notes</h3>
+          <h3>Categories</h3>
           <div className="catlist">
           {
             categories.map(function(object, i) {
@@ -33,7 +47,7 @@ export default class Home extends Component {
         </div>
         <div className="hcol">
           <div className="actionlist">
-            <div className="actionbox">
+            <div className="actionbox" onClick={this.newCategory}>
               <i class="fas fa-plus"></i>
             </div>
             <div className="actionbox">
@@ -41,9 +55,11 @@ export default class Home extends Component {
             </div>
             <div className="actionbox">
               <i class="fas fa-plus"></i>
+              <i class="far fa-sticky-note tiny"></i>
             </div>
-            <div className="actionbox">
+            <div className="actionbox" onClick={this.testNotif}>
               <i class="fas fa-plus"></i>
+              <i class="far fa-clock tiny"></i>
             </div>
           </div>
         </div>

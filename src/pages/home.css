@@ -11,6 +11,12 @@
   flex: 1;
 }
 
+.home .hcol h3 {
+  margin: 14px 0;
+  text-align: center;
+  font-weight: normal;
+  font-size: 1.3rem;
+}
 .home .hcol .catlist {
   overflow: auto;
 }
@@ -42,8 +48,11 @@
 
 .home .hcol .actionlist {
   display: flex;
+  margin: 8px 4px;
+  margin-left: 0px;
 }
 .home .hcol .actionlist .actionbox {
+  position: relative;
   height: 44px;
   width: 44px;
   display: flex;
@@ -53,4 +62,14 @@
   color: #333;
   font-size: 1.4rem;
   margin: 0 4px;
+  cursor: pointer;
+}
+.home .hcol .actionlist .actionbox i.tiny {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  font-size: 0.8rem;
+}
+.home .hcol .actionlist .actionbox:hover {
+  background-color: #ccc;
 }
