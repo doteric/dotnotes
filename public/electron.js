@@ -1,6 +1,14 @@
 const {app, BrowserWindow, Menu, Tray, ipcMain, Notification} = require('electron');
 const path = require('path');
+const Datastore = require('nedb');
+let db = new Datastore({ filename: 'storage.db' });
+db.loadDatabase(function (err) {
+  console.log("test");
+});
 
+app.setAppUserModelId("doteric.dotnotes");
+
+/* Main Window Generation */
 function createWindow () {
   let win = new BrowserWindow({
     width: 800,
@@ -55,8 +63,7 @@ function createWindow () {
 }
 app.on('ready', createWindow);
 
-app.setAppUserModelId("net.doteric.dotnotes");
-
+/* ipc Listeners */
 let winCatCreation;
 ipcMain.on('newCat', () => {
   winCatCreation = new BrowserWindow({
