@@ -100,10 +100,13 @@ ipcMain.on('openCategory', (event, catid) => {
   winCatOpen.loadURL("http://localhost:3000/catpage/"+catid);
 });
 ipcMain.on('removeCategory', (event, catid) => {
-  db.remove({
-    _id: catid
-  }, {}, function (err, numRemoved) {
+  db.remove({_id: catid}, {}, function (err, numRemoved) {
     // Category removed.
+  });
+});
+ipcMain.on('getCategory', (event, catid) => {
+  db.findOne({_id: catid}, function (err, docs) {
+    event.sender.send("receiveCategory", docs);
   });
 });
 

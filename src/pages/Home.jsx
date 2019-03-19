@@ -19,7 +19,7 @@ export default class Home extends Component {
     this.openCat = this.openCat.bind(this);
     this.removeCat = this.removeCat.bind(this);
   }
-  componentDidMount(event) {
+  componentDidMount() {
     ipcRenderer.on('receiveCats', (event, docs) => {
       let categories = [];
       for (let i = 0; i < docs.length; i++) {
