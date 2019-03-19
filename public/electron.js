@@ -3,7 +3,7 @@ const path = require('path');
 const Datastore = require('nedb');
 let db = new Datastore({ filename: 'storage.db' });
 db.loadDatabase(function (err) {
-  console.log("test");
+  console.log("Database loaded.");
 });
 
 app.setAppUserModelId("doteric.dotnotes");
@@ -65,6 +65,11 @@ app.on('ready', createWindow);
 
 /* ipc Listeners */
 let winCatCreation;
+ipcMain.on('getCategories', (event) => {
+  db.find({}, function (err, docs) {
+    event.sender.send("receiveCats", docs);
+  });
+});
 ipcMain.on('newCat', () => {
   winCatCreation = new BrowserWindow({
     width: 300,
@@ -74,8 +79,34 @@ ipcMain.on('newCat', () => {
 });
 ipcMain.on('addCategory', (event, catname) => {
   console.log(catname);
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+  today = mm + '.' + dd + '.' + yyyy;
+  db.insert({
+    catname: catname,
+    date: today
+  }, function (err) {
+    // Category inserted.
+  });
   winCatCreation.close();
 });
+ipcMain.on('openCategory', (event, catid) => {
+  let winCatOpen = new BrowserWindow({
+    width: 700,
+    height: 500
+  });
+  winCatOpen.loadURL("http://localhost:3000/catpage/"+catid);
+});
+ipcMain.on('removeCategory', (event, catid) => {
+  db.remove({
+    _id: catid
+  }, {}, function (err, numRemoved) {
+    // Category removed.
+  });
+});
+
 ipcMain.on('testNotif', () => {
   console.log("Notification should happen.");
   let myNotification = new Notification('Title', {

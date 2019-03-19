@@ -28,6 +28,9 @@
   display: flex;
   justify-content: space-between;
 }
+.home .hcol .catlist .catbox .colright {
+  display: flex;
+}
 .home .hcol .catlist .catbox .catcol {
   display: flex;
   flex-direction: column;
@@ -38,6 +41,28 @@
 }
 .home .hcol .catlist .catbox .catcol .catdate {
   font-size: 0.9rem;
+}
+.home .hcol .catlist .catbox .catcol .catoption {
+  font-size: 1.2rem;
+  height: 38px;
+  width: 38px;
+  background-color: #aaa;
+  color: #f2f2f2;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 14px;
+}
+.home .hcol .catlist .catbox .catcol .catoption:hover {
+  background-color: #a2a2a2;
+}
+.home .hcol .catlist .catbox .catcol .catoption.catremove {
+  background-color: #bd4844;
+}
+.home .hcol .catlist .catbox .catcol .catoption.catremove:hover {
+  background-color: #ca5753;
 }
 .home .hcol .catlist .catbox .catcol .catcount {
   font-size: 1.2rem;
