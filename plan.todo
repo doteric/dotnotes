@@ -1,0 +1,4 @@
+Main:
+  ☐ Disallow opening the same category.
+  ✔ When I create a new category the window should refresh or provide the new category. @done(19-03-21 19:16)
+  ☐ Ability to edit the category name.

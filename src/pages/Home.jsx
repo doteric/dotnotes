@@ -65,7 +65,7 @@ export default class Home extends Component {
           {
             this.state.categories.map((object, key) => {
               return (
-                <div className="catbox">
+                <div className="catbox" key={key}>
                   <div className="catcol">
                     <div className="catname">{object.name}</div>
                     <div className="catdate">{object.date}</div>

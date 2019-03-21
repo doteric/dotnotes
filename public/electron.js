@@ -9,8 +9,9 @@ db.loadDatabase(function (err) {
 app.setAppUserModelId("doteric.dotnotes");
 
 /* Main Window Generation */
+let win;
 function createWindow () {
-  let win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 800,
     height: 600,
     icon: "./assets/icon-32x32.png"
@@ -86,9 +87,14 @@ ipcMain.on('addCategory', (event, catname) => {
   today = mm + '.' + dd + '.' + yyyy;
   db.insert({
     catname: catname,
-    date: today
+    date: today,
+    notes: [{
+      title: "Example Title",
+      content: "Feel free to edit this note by simply clicking on it. You can also change the title by just clicking on it."
+    }]
   }, function (err) {
     // Category inserted.
+    win.reload();
   });
   winCatCreation.close();
 });
@@ -107,6 +113,42 @@ ipcMain.on('removeCategory', (event, catid) => {
 ipcMain.on('getCategory', (event, catid) => {
   db.findOne({_id: catid}, function (err, docs) {
     event.sender.send("receiveCategory", docs);
+  });
+});
+
+ipcMain.on('addNote', (event, catid) => {
+  let updateInfo = {$push:{
+    notes: {
+      title: "New note.",
+      content: "Content of new note."
+    }
+  }};
+  db.update({_id: catid}, updateInfo, {}, function (err, numReplaced) {
+    // Added new note with example data.
+  });
+});
+ipcMain.on('removeNote', (event, catid, noteid) => {
+  let updateInfo = {$unset: {}};
+  updateInfo["$unset"]["notes."+noteid] = {};
+  db.update({_id: catid}, updateInfo, {}, function (err, numReplaced) {
+    // Removed note.
+    db.update({_id: catid}, {$pull: {notes: null}}, {}, function (err, numReplaced) {
+      // Removed nulls.
+    });
+  });
+});
+ipcMain.on('updateNoteTitle', (event, catid, noteid, noteTitle) => {
+  let updateInfo = {$set: {}};
+  updateInfo["$set"]["notes."+noteid+".title"] = noteTitle;
+  db.update({_id: catid}, updateInfo, {}, function (err, numReplaced) {
+    // Updated note title.
+  });
+});
+ipcMain.on('updateNoteContent', (event, catid, noteid, noteContent) => {
+  let updateInfo = {$set: {}};
+  updateInfo["$set"]["notes."+noteid+".content"] = noteContent;
+  db.update({_id: catid}, updateInfo, {}, function (err, numReplaced) {
+    // Updated note content.
   });
 });
 

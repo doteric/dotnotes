@@ -33,25 +33,49 @@
   bottom: 4px;
   font-size: 0.8rem;
 }
+.catpage .topbar .catoptions .actionbox:hover {
+  background-color: #ccc;
+}
 
 .catpage .catnotes {
   display: flex;
-  margin: 8px;
+  margin: 8px 4px;
+  margin-top: -4px;
   text-align: justify;
+  flex-wrap: wrap;
 }
 .catpage .catnotes .notebox {
   background-color: #ddd;
   max-width: 200px;
   padding: 8px;
+  margin: 4px;
 }
 .catpage .catnotes .notebox .notetop {
   display: flex;
   justify-content: space-between;
-  
   background-color: #ccc;
+  overflow: hidden;
 }
 .catpage .catnotes .notebox .notetop .notetitle {
+  padding: 0 2px;
+  overflow: hidden;
+}
+.catpage .catnotes .notebox .notetop .notetitle p {
+  margin: 2px 4px;
+  font-size: 1rem;
+}
+.catpage .catnotes .notebox .notetop .notetitle input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
   padding: 2px 4px;
+  margin: 2px 0;
+  font-size: 1rem;
+  background-color: #ddd;
+}
+.catpage .catnotes .notebox .notetop .notetitle input:focus {
+  outline: none;
 }
 .catpage .catnotes .notebox .notetop .noteoptions {
   display: flex;
@@ -73,4 +97,12 @@
 }
 .catpage .catnotes .notebox .notetop .noteoptions .noteremove:hover {
   background-color: #ca5753;
+}
+.catpage .catnotes .notebox .notecontent p {
+  margin: 0;
+}
+
+/* Global */
+.hidden {
+  display: none !important;
 }
