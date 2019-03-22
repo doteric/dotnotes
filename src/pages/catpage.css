@@ -46,9 +46,11 @@
 }
 .catpage .catnotes .notebox {
   background-color: #ddd;
-  max-width: 200px;
+  /*max-width: 200px;*/
+  min-width: 26vw;
   padding: 8px;
   margin: 4px;
+  flex: 1;
 }
 .catpage .catnotes .notebox .notetop {
   display: flex;

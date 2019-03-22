@@ -57,7 +57,7 @@ export default class CategoryPage extends Component {
     this.setState({notes});
   }
   confirmNoteTitle(event, note, notekey) {
-    if (note.title != "") {
+    if (note.title !== "") {
       note.editingTitle = false;
       let notes = this.state.notes;
       this.setState({notes});
@@ -75,7 +75,7 @@ export default class CategoryPage extends Component {
     this.setState({notes});
   }
   confirmNoteContent(event, note, notekey) {
-    if (note.content != "") {
+    if (note.content !== "") {
       note.editingContent = false;
       let notes = this.state.notes;
       this.setState({notes});

@@ -10,6 +10,7 @@ app.setAppUserModelId("doteric.dotnotes");
 
 /* Main Window Generation */
 let win;
+let appTray;
 function createWindow () {
   win = new BrowserWindow({
     width: 800,
@@ -46,7 +47,7 @@ function createWindow () {
     return false;
   });
   let iconPath = path.join(__dirname, "assets/icon-32x32.png");
-  let appTray = new Tray(iconPath);
+  appTray = new Tray(iconPath);
   appTray.setContextMenu(Menu.buildFromTemplate([
     {label: 'Open', click() {
       win.show();
@@ -84,7 +85,7 @@ ipcMain.on('addCategory', (event, catname) => {
   var dd = String(today.getDate()).padStart(2, '0');
   var mm = String(today.getMonth() + 1).padStart(2, '0');
   var yyyy = today.getFullYear();
-  today = mm + '.' + dd + '.' + yyyy;
+  today = dd + '.' + mm + '.' + yyyy;
   db.insert({
     catname: catname,
     date: today,
@@ -104,6 +105,7 @@ ipcMain.on('openCategory', (event, catid) => {
     height: 500
   });
   winCatOpen.loadURL("http://localhost:3000/catpage/"+catid);
+  winCatOpen.setMinimumSize(360, 300);
 });
 ipcMain.on('removeCategory', (event, catid) => {
   db.remove({_id: catid}, {}, function (err, numRemoved) {
